@@ -16,17 +16,20 @@ load_dotenv()
 # Agentes de IA 
 # Nota: Removemos o agente de busca web devido a problemas com tipos de parâmetros
 # O agente financeiro já tem acesso a notícias através do YFinanceTools
+# Nota: analyst_recommendations foi desabilitado temporariamente devido a erros na API
 avk_agente_financeiro = Agent(name="AVK Agente Financeiro",
                               model=Groq(id="llama-3.3-70b-versatile"),
                               description="Fazer análise financeira de ações e buscar notícias relevantes",
                               tools=[YFinanceTools(stock_price=True,
-                                                   analyst_recommendations=True,
+                                                   analyst_recommendations=False,  # Desabilitado devido a erros
                                                    stock_fundamentals=True,
                                                    company_news=True)],
                               instructions=[
                                   "Use tabelas para mostrar os dados",
                                   "Sempre inclua as fontes das notícias",
-                                  "Busque notícias recentes sobre a empresa para complementar a análise"
+                                  "Busque notícias recentes sobre a empresa para complementar a análise",
+                                  "Foque em usar stock_price, stock_fundamentals e company_news para análise",
+                                  "Se uma ferramenta falhar, continue com as outras disponíveis"
                               ],
                               show_tool_calls=True, markdown=True)
 
@@ -36,7 +39,9 @@ multi_ai_agent = Agent(team=[avk_agente_financeiro],
                        instructions=[
                            "Sempre inclua as fontes",
                            "Use tabelas para mostrar os dados",
-                           "Combine dados financeiros com notícias recentes para uma análise completa"
+                           "Combine dados financeiros com notícias recentes para uma análise completa",
+                           "Se uma ferramenta não estiver disponível ou falhar, continue com outras ferramentas",
+                           "Foque em fornecer análise útil mesmo se algumas ferramentas não funcionarem"
                        ],
                        show_tool_calls=True, markdown=True)
 

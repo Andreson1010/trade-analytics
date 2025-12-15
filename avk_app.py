@@ -94,7 +94,13 @@ if st.button("Analisar"):
                 
                 # Executa o time de Agentes de IA
                 try:
-                    ai_response = multi_ai_agent.run(f"Resumir a recomendação do analista e compartilhar as últimas notícias para {ticker}")
+                    # Ajusta o prompt para não solicitar especificamente recomendações de analistas
+                    # que podem não estar disponíveis
+                    ai_response = multi_ai_agent.run(
+                        f"Analise a ação {ticker}. Forneça informações sobre preço atual, "
+                        f"fundamentais da empresa e as últimas notícias relevantes. "
+                        f"Use os dados disponíveis para fazer uma análise completa."
+                    )
 
                     # Limpa a resposta removendo linhas indesejadas
                     clean_response = limpar_resposta_ia(ai_response.content)
@@ -102,7 +108,17 @@ if st.button("Analisar"):
                     # Imprime a resposta
                     st.markdown(clean_response)
                 except Exception as e:
-                    st.warning(f"⚠️ Erro ao gerar análise por IA: {str(e)}")
+                    error_msg = str(e)
+                    # Tratamento mais específico para erros de ferramentas
+                    if "tool_use_failed" in error_msg or "Failed to call a function" in error_msg:
+                        st.warning(
+                            f"⚠️ **Erro ao acessar algumas ferramentas de análise**\n\n"
+                            f"Detalhes: {error_msg}\n\n"
+                            f"**Solução:** Os gráficos abaixo ainda estão disponíveis. "
+                            f"Algumas funcionalidades de IA podem estar temporariamente indisponíveis."
+                        )
+                    else:
+                        st.warning(f"⚠️ Erro ao gerar análise por IA: {error_msg}")
                     st.info("Os gráficos ainda estão disponíveis abaixo.")
 
                 # Renderiza os gráficos
