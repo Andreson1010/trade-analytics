@@ -1,8 +1,8 @@
-# Módulo Especial de Consultoria na Área de Dados com Agentes de IA
+# Consultoria na Área de Dados com Agentes de IA
 
 ## Projeto Prático Para Consultoria na Área de Dados com Agentes de IA
 
-**Deploy de App Para Day Trade Analytics em Tempo Real com Agentes de IA, Groq, DeepSeek e AWS Para Monetização**
+**Deploy de App Para Day Trade Analytics em Tempo Real com Agentes de IA, Groq, DeepSeek e AWS**
 
 ---
 
@@ -21,11 +21,11 @@ proj_9/
 │   ├── avk_icon.ico
 │   └── avk_icon.jpg
 ├── scripts/                      # Scripts auxiliares
-│   └── gerar_icones_avk.py      # Script para gerar ícones
+│   └── gerar_icones_avk.py       # Script para gerar ícones
 ├── docs/                         # Documentação completa
 │   ├── GUIA_DEPLOY_AWS.md        # Guia de deploy na AWS
 │   ├── ALTERNATIVAS_YAHOO_FINANCE.md  # Guia de alternativas ao Yahoo Finance
-│   └── guia_uv.md               # Guia do UV
+│   └── guia_uv.md                # Guia do UV
 ├── requirements.txt              # Dependências Python
 ├── config.env.example            # Exemplo de variáveis de ambiente
 ├── .gitignore                    # Arquivos ignorados pelo Git
@@ -72,24 +72,24 @@ pip install uv
 
 3. Crie um ambiente virtual com Python 3.12:
 ```bash
-uv venv dsadeployai
+uv venv 
 ```
 
 3. Ative o ambiente virtual:
 
    **Windows (PowerShell):**
    ```powershell
-   .\dsadeployai\Scripts\Activate.ps1
+   .\venv\Scripts\Activate.ps1
    ```
 
    **Windows (CMD):**
    ```cmd
-   dsadeployai\Scripts\activate.bat
+   venv\Scripts\activate.bat
    ```
 
    **Linux/MacOS:**
    ```bash
-   source dsadeployai/bin/activate
+   source venv/bin/activate
    ```
 
 4. Instale as dependências:
@@ -114,10 +114,10 @@ deactivate
 Para remover o ambiente virtual, simplesmente delete a pasta `dsadeployai`:
 ```bash
 # Windows
-rmdir /s dsadeployai
+rmdir /s venv
 
 # Linux/MacOS
-rm -rf dsadeployai
+rm -rf venv
 ```
 
 ---
@@ -128,7 +128,7 @@ rm -rf dsadeployai
 
 1. Crie sua conta gratuita na AWS.
 2. Crie uma instância EC2 da camada gratuita AWS.
-3. Acesse a instância pelo terminal conforme mostrado nas aulas.
+3. Acesse a instância pelo terminal conforme mostrado nas aulas .
 
 ### Instalação do UV na EC2
 
@@ -154,12 +154,12 @@ cd app
 
 3. Crie o ambiente virtual:
 ```bash
-uv venv dsadeployai
+uv venv 
 ```
 
 4. Ative o ambiente virtual:
 ```bash
-source dsadeployai/bin/activate
+source venv/bin/activate
 ```
 
 5. Instale as dependências:
