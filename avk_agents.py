@@ -14,14 +14,12 @@ load_dotenv()
 ########## Agentes de IA ##########
 
 # Agentes de IA 
-# Nota: Removemos o agente de busca web devido a problemas com tipos de parâmetros
-# O agente financeiro já tem acesso a notícias através do YFinanceTools
-# Nota: analyst_recommendations foi desabilitado temporariamente devido a erros na API
+# Agente financeiro: análise de dados financeiros e notícias via YFinanceTools
 avk_agente_financeiro = Agent(name="AVK Agente Financeiro",
                               model=Groq(id="llama-3.3-70b-versatile"),
                               description="Fazer análise financeira de ações e buscar notícias relevantes",
                               tools=[YFinanceTools(stock_price=True,
-                                                   analyst_recommendations=True,  # Desabilitado devido a erros
+                                                   analyst_recommendations=True,
                                                    stock_fundamentals=True,
                                                    company_news=True)],
                               instructions=[
@@ -33,7 +31,8 @@ avk_agente_financeiro = Agent(name="AVK Agente Financeiro",
                               ],
                               show_tool_calls=True, markdown=True)
 
-# Usa apenas o agente financeiro (que já tem acesso a notícias)
+# Multi-agente: usa apenas o agente financeiro (que já tem acesso a notícias via YFinanceTools)
+# Nota: Removemos o agente de busca web devido a problemas com tipos de parâmetros no phidata
 multi_ai_agent = Agent(team=[avk_agente_financeiro],
                        model=Groq(id="llama-3.3-70b-versatile"),
                        instructions=[
