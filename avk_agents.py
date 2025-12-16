@@ -21,7 +21,7 @@ avk_agente_financeiro = Agent(name="AVK Agente Financeiro",
                               model=Groq(id="llama-3.3-70b-versatile"),
                               description="Fazer análise financeira de ações e buscar notícias relevantes",
                               tools=[YFinanceTools(stock_price=True,
-                                                   analyst_recommendations=False,  # Desabilitado devido a erros
+                                                   analyst_recommendations=True,  # Desabilitado devido a erros
                                                    stock_fundamentals=True,
                                                    company_news=True)],
                               instructions=[
