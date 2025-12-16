@@ -15,19 +15,8 @@ proj_9/
 ├── avk_analytics.py              # Módulo de analytics e visualizações
 ├── avk_data_provider.py          # Módulo de provedores de dados
 ├── assets/                       # Recursos estáticos (ícones)
-│   ├── avk_icon_16x16.png
 │   ├── avk_icon_32x32.png
-│   ├── avk_icon_64x64.png
-│   ├── avk_icon.ico
-│   └── avk_icon.jpg
-├── scripts/                      # Scripts auxiliares
-│   └── gerar_icones_avk.py       # Script para gerar ícones
-├── docs/                         # Documentação completa
-│   ├── GUIA_DEPLOY_AWS.md        # Guia de deploy na AWS
-│   ├── ALTERNATIVAS_YAHOO_FINANCE.md  # Guia de alternativas ao Yahoo Finance
-│   └── guia_uv.md                # Guia do UV
-├── requirements.txt              # Dependências Python
-├── config.env.example            # Exemplo de variáveis de ambiente
+├── requirements.txt              # Dependências Python           
 ├── .gitignore                    # Arquivos ignorados pelo Git
 ├── LICENSE                       # Licença MIT
 ├── README.md                     # Este arquivo
